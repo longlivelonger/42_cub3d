@@ -1,0 +1,14 @@
+NO ./images/xpm/bluestone.xpm
+SO ./images/xpm/colorstone.xpm
+WE ./images/xpm/greystone.xpm
+EA ./images/xpm/purplestone.xpm
+F 120,22,35
+C 10,23,44
+
+1111111111111111
+1000000000000001
+1000000000000001
+1001000100001001
+1000000000000001
+1000000N00000001
+1111111111111111
