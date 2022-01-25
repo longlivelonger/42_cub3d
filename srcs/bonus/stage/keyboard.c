@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbronwyn <sbronwyn@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: sbronwyn <sbronwyn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 18:16:06 by zcris             #+#    #+#             */
-/*   Updated: 2022/01/16 15:42:54 by sbronwyn         ###   ########.fr       */
+/*   Updated: 2022/01/25 16:46:28 by sbronwyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ static void	jump_through_portal(t_game *game, char direction, float x, float y)
 {
 	float	dir_x;
 	float	dir_y;
+	int		player_x;
+	int		player_y;
 
+	player_x = game->player->coords->x;
+	player_y = game->player->coords->y;
+	if (game->map->field->elem[(int)(player_y)][(int)(player_x)] == 'O')
+		return ;
 	dir_x = cosf(get_angle(game, direction)) * MOVEMENT_STEP_MULTIPLIER;
 	dir_y = sinf(get_angle(game, direction)) * MOVEMENT_STEP_MULTIPLIER;
 	while (game->map->field->elem[(int)(y)][(int)(x)] == 'O')
@@ -33,8 +39,11 @@ static void	jump_through_portal(t_game *game, char direction, float x, float y)
 		x += dir_x;
 		y += dir_y;
 	}
-	game->player->coords->x = x;
-	game->player->coords->y = y;
+	if (game->map->field->elem[(int)(y)][(int)(x)] == '0')
+	{
+		game->player->coords->x = x;
+		game->player->coords->y = y;
+	}
 }
 
 static void	set_new_coords(t_game *game, char direction, float x, float y)
