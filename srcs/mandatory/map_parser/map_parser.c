@@ -6,7 +6,7 @@
 /*   By: sbronwyn <sbronwyn@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:38:50 by zcris             #+#    #+#             */
-/*   Updated: 2022/01/31 12:40:34 by sbronwyn         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:46:43 by sbronwyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static float	map_parser_get_player_angle_set(char c)
 {
 	if (c == 'N')
 		return (3 * PI / 2);
-	if (c == 'E')
+	if (c == 'W')
 		return (PI);
 	if (c == 'S')
 		return (PI / 2);
