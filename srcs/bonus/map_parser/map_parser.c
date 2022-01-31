@@ -6,7 +6,7 @@
 /*   By: sbronwyn <sbronwyn@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:38:50 by zcris             #+#    #+#             */
-/*   Updated: 2022/01/17 16:31:45 by sbronwyn         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:05:56 by sbronwyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,25 +73,29 @@ int	map_parser_get_player_position(t_game *game)
 {
 	int	y;
 	int	x;
+	int	found;
 
+	found = 0;
 	y = -1;
 	while (++y < (int)game->map->field->size)
 	{
 		x = -1;
 		while (game->map->field->elem[y][++x])
 		{
-			if (ft_strchr(".NSEW", game->map->field->elem[y][x]) != 0)
+			if (found && ft_strchr("NSEW", game->map->field->elem[y][x]) != 0)
+				return (0);
+			if (ft_strchr("NSEW", game->map->field->elem[y][x]) != 0)
 			{
 				game->player->coords->dir = map_parser_get_player_angle_set(
 						game->map->field->elem[y][x]);
 				game->player->coords->x = x + 0.5;
 				game->player->coords->y = y + 0.5;
 				game->map->field->elem[y][x] = '0';
-				return (1);
+				found = 1;
 			}
 		}
 	}
-	return (0);
+	return (found);
 }
 
 int	map_parser(t_game *game, char *filename)
