@@ -6,7 +6,7 @@
 /*   By: sbronwyn <sbronwyn@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 17:24:08 by sbronwyn          #+#    #+#             */
-/*   Updated: 2022/01/16 15:42:54 by sbronwyn         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:32:13 by sbronwyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	checklist_init(t_game *game)
 	game->checklist.ea = 0;
 	game->checklist.f = 0;
 	game->checklist.c = 0;
+	game->checklist.no_empty_ln = 1;
 }
 
 int	checklist_is_complete(t_game *game)
@@ -29,7 +30,8 @@ int	checklist_is_complete(t_game *game)
 		&& game->checklist.we == 1
 		&& game->checklist.ea == 1
 		&& game->checklist.f == 1
-		&& game->checklist.c == 1)
+		&& game->checklist.c == 1
+		&& game->checklist.no_empty_ln == 1)
 		return (1);
 	return (0);
 }

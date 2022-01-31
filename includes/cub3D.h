@@ -6,7 +6,7 @@
 /*   By: sbronwyn <sbronwyn@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:30:34 by zcris             #+#    #+#             */
-/*   Updated: 2022/01/17 16:31:26 by sbronwyn         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:32:44 by sbronwyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_checklist
 	int	ea;
 	int	f;
 	int	c;
+	int	no_empty_ln;
 }	t_checklist;
 
 typedef struct s_player

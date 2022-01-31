@@ -6,7 +6,7 @@
 /*   By: sbronwyn <sbronwyn@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 17:38:50 by zcris             #+#    #+#             */
-/*   Updated: 2022/01/31 12:05:56 by sbronwyn         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:37:31 by sbronwyn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ static void	map_parser_line_handling(t_game *game, char *str)
 	else
 	{
 		tmp = ft_strtrim(str, "\n");
-		z_array_append(game->map->field, tmp);
+		if (ft_strlen(tmp) == 0 && game->map->field->size > 0)
+			game->checklist.no_empty_ln = 0;
+		else if (ft_strlen(tmp) != 0)
+			z_array_append(game->map->field, tmp);
 		utls_free(tmp);
 	}
 }
@@ -111,14 +114,13 @@ int	map_parser(t_game *game, char *filename)
 		tmp = utls_gnl(fd);
 		if (NULL == tmp)
 			break ;
-		if (ft_strlen(tmp) > 0 && tmp[0] != '\n')
-			map_parser_line_handling(game, tmp);
+		map_parser_line_handling(game, tmp);
 		utls_free(tmp);
 	}
 	close(fd);
+	utls_adjust_map_width(game);
 	if (!map_tests_check(game))
 		return (0);
-	utls_adjust_map_width(game);
 	game_create_textures(game);
 	return (1);
 }
